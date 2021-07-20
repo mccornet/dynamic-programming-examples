@@ -46,7 +46,7 @@ Given an array of integers, return the product of the contiguous subarray having
 
 # Largest Rectangle in skyline
 
-Taken from: Programming Interview Problems: Dynamic Programming by Leonardo Rossi
+Source: "Programming Interview Problems: Dynamic Programming, Leonardo Rossi"
 
 Given a skyline where all buildings are rectangular and have the same width. 
 
@@ -62,6 +62,8 @@ The largest rectangle has area 10
 Formed by 3, 5, 4, 2, 5, 5
 5 buildings limited by height 2
 
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p22_1.png" alt="Problem Example" style="zoom:67%;" />
+
 ## Solution
 
 Notice the following properties:
@@ -73,6 +75,8 @@ Based on this it is possible to formulate the following solution:
 - Iterate with the right pointer over the skyline.
 - Every time the height increases, grow a list of candidate left pointers.    
 - When the height decreases, trim the left candidates and update the area.
+
+
 
 ```python
 from collections import namedtuple
