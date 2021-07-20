@@ -24,10 +24,52 @@ This is a summary of textbook examples about dynamic programming.
 
 Given an array of integers, find the contiguous subarray having the largest sum. Return its sum.
 
-### Example
-For [1, 1, 2, 3, 2], the sum is 6 for the subarray [1, 2, 3].
+> **Example**
+>
+> For [1, 1, 2, 3, 2], the sum is 6 for the subarray [1, 2, 3].
 
-### Solution 1:
+## Solution
+
+**Observation 1** It can make sense to include negative numbers in the solution. 
+
+**Observation 2** It is possible to create a running sum over an array.
+
+**Summary**
+
+- To find the maximum-sum subarray, examine smaller chunks of the array.
+-  A bigger chunk can be formed by appending an item to the chunk preceding it; this
+  should be done only when the sum of the preceding chunk is positive;
+- When the sum of the preceding chunk is negative, start a new chunk containing
+  a single element;
+- The maximum-sum subarray is the chunk with the largest sum.
+
+## Kadane's algorithm *O*(n) time, *O*(n) space
+
+Instead of keeping all computed chunks, compute a running maximum instead. Only keep track of the best chunk ever seen.
+
+```python
+def find_max_sum_subarray(array):
+    # edge case
+    if not array: return 0
+
+    prev_chunk = -float('inf')
+    best_chunk = -float('inf')
+
+    for item in array:
+        if prev_chunk < 0:
+            chunk = item
+        else:
+            chunk = prev_chunk + item
+
+        # update the running maximum
+        best_chunk = max(best_chunk, chunk)
+        # Record the array chunk
+        prev_chunk = chunk
+
+    return best_chunk
+```
+
+
 
 
 # The maximum-product subarray
