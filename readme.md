@@ -76,6 +76,13 @@ Based on this it is possible to formulate the following solution:
 - Every time the height increases, grow a list of candidate left pointers.    
 - When the height decreases, trim the left candidates and update the area.
 
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p22_2.png" alt="Problem Example" style="zoom:67%;" />
+
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p22_3.png" alt="Problem Example" style="zoom:67%;" />
+
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p22_4.png" alt="Problem Example" style="zoom:67%;" />
+
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p22_5.png" alt="Problem Example" style="zoom:67%;" />
 
 
 ```python
@@ -116,7 +123,4 @@ def find_largest_rectangle(skyline):
         left_candidates.append(Candidate(index=next_left, height=height))
 
     return largest_area
-
-
-print(find_largest_rectangle([1, 3, 5, 4, 2, 5, 1]))
 ```
