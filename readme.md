@@ -22,6 +22,10 @@ This is a summary of textbook examples about dynamic programming.
 
 # The maximum-sum subarray - Kadane’s algorithm
 
+> **Based on**:
+>
+> Programming Interview Problems: Dynamic Programming, Leonardo Rossi, Chapter 8
+
 Given an array of integers, find the contiguous subarray having the largest sum. Return its sum.
 
 > **Example**
@@ -50,18 +54,18 @@ Given an array of integers, find the contiguous subarray having the largest sum.
 Instead of keeping all computed chunks, compute a running maximum instead. Only keep track of the best chunk ever seen.
 
 ```python
-def find_max_sum_subarray(array):
+def find_max_sum_subarray(array: list[int]) -> int:
     # edge case
     if not array: return 0
 
     prev_chunk = -float('inf')
     best_chunk = -float('inf')
 
-    for item in array:
+    for num in array:
         if prev_chunk < 0:
-            chunk = item
+            chunk = num
         else:
-            chunk = prev_chunk + item
+            chunk = prev_chunk + num
 
         # update the running maximum
         best_chunk = max(best_chunk, chunk)
@@ -90,11 +94,13 @@ Given an array of integers, return the product of the contiguous subarray having
 
 # Largest Rectangle in skyline
 
-Source: "Programming Interview Problems: Dynamic Programming, Leonardo Rossi"
+> **Based on**:
+>
+> Programming Interview Problems: Dynamic Programming, Leonardo Rossi, Chapter 22
 
 Given a skyline where all buildings are rectangular and have the same width. The skyline is encoded as an array of heights. Return the area of the largest rectangle in the skyline that is covered by buildings.
 
-> Example
+> **Example**
 >
 > skyline = [1, 3, 5, 4, 2, 5, 1]. 
 > The largest rectangle has area 10

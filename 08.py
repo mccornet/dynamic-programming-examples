@@ -5,11 +5,11 @@ def find_max_sum_subarray(array: list[int]) -> int:
     prev_chunk = -float('inf')
     best_chunk = -float('inf')
 
-    for item in array:
+    for num in array:
         if prev_chunk < 0:
-            chunk = item
+            chunk = num
         else:
-            chunk = prev_chunk + item
+            chunk = prev_chunk + num
 
         # update the running maximum
         best_chunk = max(best_chunk, chunk)
