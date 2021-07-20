@@ -48,11 +48,7 @@ Given an array of integers, return the product of the contiguous subarray having
 
 Source: "Programming Interview Problems: Dynamic Programming, Leonardo Rossi"
 
-Given a skyline where all buildings are rectangular and have the same width. 
-
-The skyline is encoded as an array of heights.
-
-Return the area of the largest rectangle in the skyline that is covered by buildings.
+Given a skyline where all buildings are rectangular and have the same width. The skyline is encoded as an array of heights. Return the area of the largest rectangle in the skyline that is covered by buildings.
 
 ## Example
 
