@@ -1,9 +1,9 @@
-# Dynamic Programming Examples
+#Dynamic Programming Examples
 
 This is a summary of textbook examples about dynamic programming.
 
 
-# Problems
+#Problems
 
 - The Fibonacci sequence
 - Optimal stock market strategy
@@ -30,7 +30,7 @@ For [1, 1, 2, 3, 2], the sum is 6 for the subarray [1, 2, 3].
 ## Solution 1:
 
 
-# The maximum-product subarray
+#The maximum-product subarray
 
 Given an array of integers, return the product of the contiguous subarray having the largest product.
 
@@ -44,7 +44,7 @@ Given an array of integers, return the product of the contiguous subarray having
 
 
 
-# Largest Rectangle in skyline
+#Largest Rectangle in skyline
 
 Source: "Programming Interview Problems: Dynamic Programming, Leonardo Rossi"
 
