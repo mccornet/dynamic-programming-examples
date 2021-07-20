@@ -1,9 +1,9 @@
-#Dynamic Programming Examples
+# Dynamic Programming Examples
 
 This is a summary of textbook examples about dynamic programming.
 
 
-#Problems
+# Problems
 
 - The Fibonacci sequence
 - Optimal stock market strategy
