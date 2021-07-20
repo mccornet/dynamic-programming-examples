@@ -1,4 +1,4 @@
-def find_max_sum_subarray(array):
+def find_max_sum_subarray(array: list[int]) -> int:
     # edge case
     if not array: return 0
 

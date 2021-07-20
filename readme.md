@@ -32,15 +32,17 @@ Given an array of integers, find the contiguous subarray having the largest sum.
 
 **Observation 1** It can make sense to include negative numbers in the solution. 
 
+![](https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p8_1.png)
+
 **Observation 2** It is possible to create a running sum over an array.
+
+![](https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p8_2.png)
 
 **Summary**
 
 - To find the maximum-sum subarray, examine smaller chunks of the array.
--  A bigger chunk can be formed by appending an item to the chunk preceding it; this
-  should be done only when the sum of the preceding chunk is positive;
-- When the sum of the preceding chunk is negative, start a new chunk containing
-  a single element;
+- A bigger chunk can be formed by appending an item to the chunk preceding it; this should be done only when the sum of the preceding chunk is positive;
+- When the sum of the preceding chunk is negative, start a new chunk containing a single element.
 - The maximum-sum subarray is the chunk with the largest sum.
 
 ## Kadane's algorithm *O*(n) time, *O*(n) space
