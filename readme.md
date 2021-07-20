@@ -2,16 +2,6 @@
 
 This is a summary of textbook examples about dynamic programming.
 
-
-### Problems
-
-- The Fibonacci sequence
-- Optimal stock market strategy
-- Change-making
-- Number of expressions with a target result (Kadane’s algorithm)
-- Largest rectangle in skyline
-
-
 # The Fibonacci sequence
 
 # Optimal stock market strategy
