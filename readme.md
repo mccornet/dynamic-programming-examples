@@ -18,9 +18,11 @@ def fibonacci(n):
 
 This results in a lot of redundant calls and runs in $O(2^n)$ time.
 
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_1.png" style="zoom:67%;" />
 
+The python library offers easy caching with functools lru_cache, reducing the redundant calls to simple lookups.
 
-The python library offers easy caching with functools lru_cache
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_2.png" style="zoom:67%;" />
 
 ```python
 from functools import lru_cache
