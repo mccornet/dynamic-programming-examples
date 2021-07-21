@@ -65,6 +65,46 @@ def find_max_sum_subarray(array: list[int]) -> int:
     return best_chunk
 ```
 
+It is possible to improve this algorithm's speed even more.
+
+Notice that:
+- It is possible to set the initial values to the first value of the array
+- It is not needed to check if the previous chunk became negative; if the max value between the current chunk + the next number and the next number is taken. See the second array for this example. After adding the -4 the next iteration the number 1 will be a bigger value than -1.
+
+```python
+def find_max_sum_subarray(self, nums: list[int]) -> int:
+    if not nums: return 0
+
+    best_chunk = prev_chunk = nums[0]  # initialize with the first value
+
+    for num in nums[1:]:
+        # reset if we go below zero.
+        if prev_chunk < 0 : prev_chunk = 0
+        prev_chunk = prev_chunk + num
+        
+        # Update the running maximum        
+        if best_chunk < prev_chunk: best_chunk = prev_chunk
+
+    return best_chunk
+```
+
+Or alternatively replace that if statement with a call to max.
+
+```python
+def find_max_sum_subarray(self, nums: list[int]) -> int:
+    if not nums: return 0
+
+    best_chunk = curr_chunk = nums[0]  
+
+    for num in nums[1:]:
+        # Keep adding numbers. Once a chunk becomes negative
+        # The next positive number will start a new chunk
+        curr_chunk = max(curr_chunk + num, num)
+        # Update the running maximum
+        if best_chunk < curr_chunk: best_chunk = curr_chunk
+
+    return best_chunk
+```
 
 
 
