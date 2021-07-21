@@ -172,18 +172,87 @@ Given an array of integers, return the product of the contiguous subarray having
 > - for [2, 3, 4], the product is 24 for the subarray [2, 3, 4].
 > - for [-2, 3, 4], the product is 12 for the subarray [3, 4].
 > - for [-2, 3, -4], the product is 24 for the subarray [-2, 3, -4].
+>
+> **Related leetcode.com**
+>
+> - [152. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)
 
 ## Observations
 
 Observation 1: 0's divide the array into chunks
 
+![](https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p9_1.png)
+
 Observation 2: negative numbers cancel each other out when even; odd numbers need to be avoided
+
+![](https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p9_2.png)
 
 ## Solution 1, two-pass $O(n)$ time
 
 - To deal with the 0's we divide the array into chunks and compute the maximum of each chunk
 - To deal with odd negative numbers we compute the maximum value of a chunk in the forward and in the backward direction
 - Store the maximum value seen while iterating over the chunks
+
+```python
+def maxProductSubarray(array):
+
+    def chunkGenerator(array):
+        chunk = []
+        # a zero to simplify elif to yield the last value
+        for value in array + [0]: 
+            if value: 
+                chunk.append(value)
+            elif chunk:
+                yield chunk
+                chunk = []  # dont forget to clean the chunk
+
+    def twoPassMax(chunk):
+
+        def productPass(chunk):
+            best, curr = 0, 1
+            for value in chunk:
+                curr *= value
+                if best < curr: best = curr
+            return best
+        
+        return max(productPass(chunk), productPass(chunk[::-1]))
+
+    # Calculate the max product of the whole array
+    # By storing the biggest value seen
+    best = 0
+    for chunk in chunkGenerator(array):
+        curr = twoPassMax(chunk)
+        if best < curr: best = curr
+    
+    return best
+```
+
+It is possible to integrate this zero check into the productPass instead
+
+```python
+def maxProductSubarray(array):
+
+    def productPass(array):
+        best, curr = 0, 1
+        for value in array:   
+            curr *= value
+            # Reset the value if a zero was encountered
+            if not curr: curr = value
+     
+            if best < curr: best = curr
+        return best
+        
+    return max(productPass(array), productPass(array[::-1]))
+```
+
+> **Leonardo Rossi's comment**
+>
+> "Making the code compact and clever may come at the expense of readability. Competitive
+> programming resources are often biased towards short and clever implementations.
+> In a software engineering position, these are usually frowned upon, since the code may become hard to understand and maintain. Avoid writing the code too cryptic/clever
+> during the interview, since it may be seen as a negative point."
+
+## Solution 2, one-pass $O(n)$ time
 
 
 
