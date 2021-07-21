@@ -173,6 +173,18 @@ Given an array of integers, return the product of the contiguous subarray having
 > - for [-2, 3, 4], the product is 12 for the subarray [3, 4].
 > - for [-2, 3, -4], the product is 24 for the subarray [-2, 3, -4].
 
+## Observations
+
+Observation 1: 0's divide the array into chunks
+
+Observation 2: negative numbers cancel each other out when even; odd numbers need to be avoided
+
+## Solution 1, two-pass $O(n)$ time
+
+- To deal with the 0's we divide the array into chunks and compute the maximum of each chunk
+- To deal with odd negative numbers we compute the maximum value of a chunk in the forward and in the backward direction
+- Store the maximum value seen while iterating over the chunks
+
 
 
 
