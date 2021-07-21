@@ -18,11 +18,11 @@ def fibonacci(n):
 
 This results in a lot of redundant calls and runs in $O(2^n)$ time.
 
-<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_1.png" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_1.png" style="zoom: 50%;" />
 
 The python library offers easy caching with functools lru_cache, reducing the redundant calls to simple lookups.
 
-<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_2.png" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_2.png" style="zoom:50%;" />
 
 ```python
 from functools import lru_cache
@@ -46,8 +46,6 @@ def fibonacci(n):
     
     return curr
 ```
-
-
 
 # Optimal stock market strategy
 
@@ -88,7 +86,7 @@ Given an array of integers, find the contiguous subarray having the largest sum.
 - When the sum of the preceding chunk is negative, start a new chunk containing a single element.
 - The maximum-sum subarray is the chunk with the largest sum.
 
-## Kadane's algorithm *O*(n) time, *O*(1) space
+## Kadane's algorithm $O(n)$ time, $O(1)$ space
 
 Instead of keeping all computed chunks, compute a running maximum instead. Only keep track of the best chunk ever seen.
 
