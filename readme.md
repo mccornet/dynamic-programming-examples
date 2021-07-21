@@ -4,6 +4,49 @@ This is a summary of textbook examples about dynamic programming.
 
 # The Fibonacci sequence
 
+> **Based on**:
+>
+> Programming Interview Problems: Dynamic Programming, Leonardo Rossi, Chapter 3
+
+The Fibonacci sequence is the default example of dynamic programming in action. Dynamic programming is recursive programming with memoization. A recursive version without a cache is given by:
+
+```python
+def fibonacci(n):
+    if n <= 2 : return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```
+
+This results in a lot of redundant calls and runs in $O(2^n)$ time.
+
+
+
+The python library offers easy caching with functools lru_cache
+
+```python
+from functools import lru_cache
+
+
+@lru_cache()
+def fibonacci(n):
+    if n <= 2 : return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+```
+
+## Dynamic programming, bottom-up
+
+A more efficient implementation (but often less intuitive for most) is to use the bottom up approach instead. Only the last two numbers are needed to calculate the next number if the result is built from the bottom up instead.
+
+```python
+def fibonacci(n):
+    prev = curr = 1
+    for _ in range(n - 2):
+        prev, curr = curr, prev + curr
+    
+    return curr
+```
+
+
+
 # Optimal stock market strategy
 
 # Change making
@@ -15,6 +58,10 @@ This is a summary of textbook examples about dynamic programming.
 > **Based on**:
 >
 > Programming Interview Problems: Dynamic Programming, Leonardo Rossi, Chapter 8
+>
+> **Related leetcode.com**
+>
+> [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
 
 Given an array of integers, find the contiguous subarray having the largest sum. Return its sum.
 
@@ -39,7 +86,7 @@ Given an array of integers, find the contiguous subarray having the largest sum.
 - When the sum of the preceding chunk is negative, start a new chunk containing a single element.
 - The maximum-sum subarray is the chunk with the largest sum.
 
-## Kadane's algorithm *O*(n) time, *O*(n) space
+## Kadane's algorithm *O*(n) time, *O*(1) space
 
 Instead of keeping all computed chunks, compute a running maximum instead. Only keep track of the best chunk ever seen.
 
@@ -90,7 +137,13 @@ def find_max_sum_subarray(self, nums: list[int]) -> int:
 
 ## Improvement 2
 
+> Inspired by leetcode.com problem 53
+
 It is not needed to check if the previous chunk became negative; if the max value between the current chunk + the next number and the next number is taken. See the second array for this example. After adding the -4 the next iteration the number 1 will be a bigger value than -1.
+
+> **Note**
+>
+> This max call simplified the code, but made it harder to understand. It is not always worth sacrificing speed over readability.
 
 ```python
 def find_max_sum_subarray(self, nums: list[int]) -> int:
