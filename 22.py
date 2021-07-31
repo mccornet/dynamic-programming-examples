@@ -5,7 +5,6 @@ def find_largest_rectangle(skyline):
     # Pad the skyline with zero, to avoid having to clean up
     # left_candidates at the end of the iteration.
     skyline = skyline + [0]
-    num_buildings = len(skyline)
 
     # store each candidate as a named tuple with fields index and height. 
     # As the right pointer advances, remove left candidates taller 
@@ -15,19 +14,18 @@ def find_largest_rectangle(skyline):
     left_candidates = []
     largest_area = 0
 
-    for right in range(num_buildings):
-        height = skyline[right]
+    for right, height in enumerate(skyline):
 
         # Left pointer of the next candidate to be created.
         next_left = right
-        while left_candidates and left_candidates[-1].height >= height:
+        while left_candidates and skyline[left_candidates[-1].index] >= height:
             # Update area.
             # We remove the rectangle starting at left and ending
             # at right-1. It has height left_candidates[-1].height.
             left = left_candidates[-1].index
             width = right - left
             area = width * left_candidates[-1].height
-            largest_area = max(largest_area, area)
+            if largest_area < area: largest_area = area
             # Possible next candidate by trimming down the building.
             next_left = left
             del left_candidates[-1]

@@ -62,6 +62,10 @@ def fibonacci(n):
 > **Related leetcode.com**
 >
 > [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+>
+> **See also**
+> 
+> [Divide and Conquer Approach](https://leetcode.com/problems/maximum-subarray/discuss/199163/Python-O(N)-Divide-and-Conquer-solution-with-explanations)
 
 Given an array of integers, find the contiguous subarray having the largest sum. Return its sum.
 
@@ -135,7 +139,7 @@ def find_max_sum_subarray(self, nums: list[int]) -> int:
     return best_chunk
 ```
 
-## Improvement 2
+## Variation using max()
 
 > Inspired by leetcode.com problem 53
 
@@ -247,16 +251,7 @@ def maxProductSubarray(array):
 
 > **Leonardo Rossi's comment**
 >
-> "Making the code compact and clever may come at the expense of readability. Competitive
-> programming resources are often biased towards short and clever implementations.
-> In a software engineering position, these are usually frowned upon, since the code may become hard to understand and maintain. Avoid writing the code too cryptic/clever
-> during the interview, since it may be seen as a negative point."
-
-## Solution 2, one-pass $O(n)$ time
-
-
-
-
+> "Making the code compact and clever may come at the expense of readability. Competitive programming resources are often biased towards short and clever implementations. In a software engineering position, these are usually frowned upon, since the code may become hard to understand and maintain. Avoid writing the code too cryptic/clever during the interview, since it may be seen as a negative point."
 
 # Largest Rectangle in skyline
 
@@ -305,7 +300,6 @@ def find_largest_rectangle(skyline):
     # Pad the skyline with zero, to avoid having to clean up
     # left_candidates at the end of the iteration.
     skyline = skyline + [0]
-    num_buildings = len(skyline)
 
     # store each candidate as a named tuple with fields index and height. 
     # As the right pointer advances, remove left candidates taller 
@@ -315,19 +309,18 @@ def find_largest_rectangle(skyline):
     left_candidates = []
     largest_area = 0
 
-    for right in range(num_buildings):
-        height = skyline[right]
+    for right, height in enumerate(skyline):
 
         # Left pointer of the next candidate to be created.
         next_left = right
-        while left_candidates and left_candidates[-1].height >= height:
+        while left_candidates and skyline[left_candidates[-1].index] >= height:
             # Update area.
             # We remove the rectangle starting at left and ending
             # at right-1. It has height left_candidates[-1].height.
             left = left_candidates[-1].index
             width = right - left
             area = width * left_candidates[-1].height
-            largest_area = max(largest_area, area)
+            if largest_area < area: largest_area = area
             # Possible next candidate by trimming down the building.
             next_left = left
             del left_candidates[-1]
@@ -336,3 +329,6 @@ def find_largest_rectangle(skyline):
 
     return largest_area
 ```
+
+## Leetcode.com, 11. Container with most water
+
