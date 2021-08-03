@@ -16,13 +16,18 @@ def fibonacci(n):
     return fibonacci(n - 1) + fibonacci(n - 2)
 ```
 
-This results in a lot of redundant calls and runs in $O(2^n)$ time.
+<table>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_1.png"/></td>
+        <td><img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_2.png"/></td>
+    </tr>
+    <tr>
+        <td>This results in a lot of redundant calls and runs in $O(2^n)$ time.</td>
+        <td>The python library offers easy caching with functools lru_cache, reducing the redundant calls to simple lookups.</td>
+    </tr>
+</table>
 
-<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_1.png" style="zoom: 50%;" />
 
-The python library offers easy caching with functools lru_cache, reducing the redundant calls to simple lookups.
-
-<img src="https://raw.githubusercontent.com/mccornet/dynamic-programming-examples/main/images/rossi_p3_2.png" style="zoom:50%;" />
 
 ```python
 from functools import lru_cache
